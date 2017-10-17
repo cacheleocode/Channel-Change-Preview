@@ -11,6 +11,17 @@
 		8D856A1A1F95DF7300E57C81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A191F95DF7300E57C81 /* ViewController.swift */; };
 		8D856A1D1F95DF7300E57C81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A1B1F95DF7300E57C81 /* Main.storyboard */; };
 		8D856A1F1F95DF7300E57C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A1E1F95DF7300E57C81 /* Assets.xcassets */; };
+		8D856A2E1F95DFC600E57C81 /* amc.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A261F95DFC600E57C81 /* amc.mp4 */; };
+		8D856A2F1F95DFC600E57C81 /* cbs.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A271F95DFC600E57C81 /* cbs.mp4 */; };
+		8D856A301F95DFC600E57C81 /* cnn.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A281F95DFC600E57C81 /* cnn.mp4 */; };
+		8D856A311F95DFC600E57C81 /* csn.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A291F95DFC600E57C81 /* csn.mp4 */; };
+		8D856A321F95DFC600E57C81 /* espn.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A2A1F95DFC600E57C81 /* espn.mp4 */; };
+		8D856A331F95DFC600E57C81 /* fox.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A2B1F95DFC600E57C81 /* fox.mp4 */; };
+		8D856A341F95DFC600E57C81 /* hbo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A2C1F95DFC600E57C81 /* hbo.mp4 */; };
+		8D856A351F95DFC600E57C81 /* hsn.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A2D1F95DFC600E57C81 /* hsn.mp4 */; };
+		8D856A371F95E20600E57C81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A361F95E20600E57C81 /* main.swift */; };
+		8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A381F95E21400E57C81 /* UIApplication.swift */; };
+		8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A3A1F95E33E00E57C81 /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +31,17 @@
 		8D856A1C1F95DF7300E57C81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D856A1E1F95DF7300E57C81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D856A201F95DF7300E57C81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D856A261F95DFC600E57C81 /* amc.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = amc.mp4; sourceTree = "<group>"; };
+		8D856A271F95DFC600E57C81 /* cbs.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cbs.mp4; sourceTree = "<group>"; };
+		8D856A281F95DFC600E57C81 /* cnn.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cnn.mp4; sourceTree = "<group>"; };
+		8D856A291F95DFC600E57C81 /* csn.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = csn.mp4; sourceTree = "<group>"; };
+		8D856A2A1F95DFC600E57C81 /* espn.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = espn.mp4; sourceTree = "<group>"; };
+		8D856A2B1F95DFC600E57C81 /* fox.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = fox.mp4; sourceTree = "<group>"; };
+		8D856A2C1F95DFC600E57C81 /* hbo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hbo.mp4; sourceTree = "<group>"; };
+		8D856A2D1F95DFC600E57C81 /* hsn.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hsn.mp4; sourceTree = "<group>"; };
+		8D856A361F95E20600E57C81 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8D856A381F95E21400E57C81 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		8D856A3A1F95E33E00E57C81 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +58,14 @@
 		8D856A0B1F95DF7300E57C81 = {
 			isa = PBXGroup;
 			children = (
+				8D856A261F95DFC600E57C81 /* amc.mp4 */,
+				8D856A271F95DFC600E57C81 /* cbs.mp4 */,
+				8D856A281F95DFC600E57C81 /* cnn.mp4 */,
+				8D856A291F95DFC600E57C81 /* csn.mp4 */,
+				8D856A2A1F95DFC600E57C81 /* espn.mp4 */,
+				8D856A2B1F95DFC600E57C81 /* fox.mp4 */,
+				8D856A2C1F95DFC600E57C81 /* hbo.mp4 */,
+				8D856A2D1F95DFC600E57C81 /* hsn.mp4 */,
 				8D856A161F95DF7300E57C81 /* Channel Change Preview */,
 				8D856A151F95DF7300E57C81 /* Products */,
 			);
@@ -53,7 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				8D856A171F95DF7300E57C81 /* AppDelegate.swift */,
+				8D856A361F95E20600E57C81 /* main.swift */,
+				8D856A381F95E21400E57C81 /* UIApplication.swift */,
 				8D856A191F95DF7300E57C81 /* ViewController.swift */,
+				8D856A3A1F95E33E00E57C81 /* PageViewController.swift */,
 				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
 				8D856A1E1F95DF7300E57C81 /* Assets.xcassets */,
 				8D856A201F95DF7300E57C81 /* Info.plist */,
@@ -123,6 +156,14 @@
 			files = (
 				8D856A1F1F95DF7300E57C81 /* Assets.xcassets in Resources */,
 				8D856A1D1F95DF7300E57C81 /* Main.storyboard in Resources */,
+				8D856A2E1F95DFC600E57C81 /* amc.mp4 in Resources */,
+				8D856A2F1F95DFC600E57C81 /* cbs.mp4 in Resources */,
+				8D856A301F95DFC600E57C81 /* cnn.mp4 in Resources */,
+				8D856A311F95DFC600E57C81 /* csn.mp4 in Resources */,
+				8D856A321F95DFC600E57C81 /* espn.mp4 in Resources */,
+				8D856A331F95DFC600E57C81 /* fox.mp4 in Resources */,
+				8D856A341F95DFC600E57C81 /* hbo.mp4 in Resources */,
+				8D856A351F95DFC600E57C81 /* hsn.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,8 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */,
+				8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */,
 				8D856A1A1F95DF7300E57C81 /* ViewController.swift in Sources */,
 				8D856A181F95DF7300E57C81 /* AppDelegate.swift in Sources */,
+				8D856A371F95E20600E57C81 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
