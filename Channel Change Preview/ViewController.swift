@@ -68,12 +68,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 player.seek(to: kCMTimeZero)
-                player.pause()
+                player.play()
             }
         })
         
         player.isMuted = false;
-        player.pause()
+        player.play()
         
         self.videoView.layer.addSublayer(playerLayer!)
         
@@ -106,12 +106,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerCBS.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 playerCBS.seek(to: kCMTimeZero)
-                playerCBS.pause()
+                playerCBS.play()
             }
         })
         
         playerCBS.isMuted = true;
-        playerCBS.pause()
+        playerCBS.play()
         
         
         /*
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
          guideLayerCBS?.contents = UIImage(named: "guide1")?.cgImage
          guideLayerCBS?.contentsGravity = kCAGravityResizeAspectFill
          guideLayerCBS!.frame = self.guideView.frame
-         guideLayerCBS?.isHidden = true
+         guideLayerCBS?.isHidden = true			
          
          self.guideView.layer.addSublayer(guideLayerCBS!)
          */
@@ -143,12 +143,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerCNN.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 playerCNN.seek(to: kCMTimeZero)
-                playerCNN.pause()
+                playerCNN.play()
             }
         })
         
         playerCNN.isMuted = true;
-        playerCNN.pause()
+        playerCNN.play()
         
         /*
          // guide CNN
@@ -179,12 +179,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerCSN.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 playerCSN.seek(to: kCMTimeZero)
-                playerCSN.pause()
+                playerCSN.play()
             }
         })
         
         playerCSN.isMuted = true;
-        playerCSN.pause()
+        playerCSN.play()
         
         /*
          // guide CSN
@@ -215,12 +215,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerESPN.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 playerESPN.seek(to: kCMTimeZero)
-                playerESPN.pause()
+                playerESPN.play()
             }
         })
         
         playerESPN.isMuted = true;
-        playerESPN.pause()
+        playerESPN.play()
         
         /*
          // guide ESPN
@@ -251,12 +251,12 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: playerFOX.currentItem, queue: nil, using: { (_) in
             DispatchQueue.main.async {
                 playerFOX.seek(to: kCMTimeZero)
-                playerFOX.pause()
+                playerFOX.play()
             }
         })
         
         playerFOX.isMuted = true;
-        playerFOX.pause()
+        playerFOX.play()
         
         /*
          // guide FOX
@@ -394,6 +394,7 @@ class ViewController: UIViewController {
                         
                         self.prevView.alpha = 1.0
                         self.prevView.frame.origin.x = 0
+                        
                         
                     }, completion: nil)
                 }
