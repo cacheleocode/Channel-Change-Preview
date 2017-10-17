@@ -115,6 +115,12 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="x8p-vz-T33">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="keyart_cbs" translatesAutoresizingMaskIntoConstraints="NO" id="e3J-Rj-7XR">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPh-Io-HHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,6 +155,12 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="L7L-5A-wf1">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="keyart_cnn" translatesAutoresizingMaskIntoConstraints="NO" id="81J-3c-6gC">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsS-Pv-jff" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,6 +178,12 @@
                     <view key="view" contentMode="scaleToFill" id="VwB-MW-SDj">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="keyart_amc" translatesAutoresizingMaskIntoConstraints="NO" id="hBN-WJ-Mrr">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXX-g8-aiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,4 +211,9 @@
             <point key="canvasLocation" x="3443" y="814"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="keyart_amc" width="1920" height="1080"/>
+        <image name="keyart_cbs" width="1920" height="1080"/>
+        <image name="keyart_cnn" width="1920" height="1080"/>
+    </resources>
 </document>
