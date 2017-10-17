@@ -7,6 +7,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var prevView: UIView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
     
@@ -302,7 +303,7 @@ class ViewController: UIViewController {
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view.addGestureRecognizer(swipeUp)
         
-        self.overlayView.alpha = 0.0
+        // self.overlayView.alpha = 0.0
         
         self.containerView.alpha = 0.0
         
@@ -327,14 +328,17 @@ class ViewController: UIViewController {
         if (direction == "left") {
             resetOrigin = 200
         } else {
-            resetOrigin = -200
+            resetOrigin = -433
         }
         
         pendingTask2 = DispatchWorkItem {
             UIView.animate(withDuration: 0.3, animations: {
-                self.overlayView.alpha = 0.0
+                // self.overlayView.alpha = 0.0
                 self.containerView.alpha = 0.0
-                self.containerView.frame.origin.x = self.resetOrigin!
+                //self.containerView.frame.origin.x = -200
+                
+                self.prevView.alpha = 0.0
+                self.prevView.frame.origin.x = self.resetOrigin!
             }, completion: { (finished: Bool) in
                 self.pageViewController?.scrollToViewController(index: self.resetIndex)
             })
@@ -379,21 +383,29 @@ class ViewController: UIViewController {
             case UISwipeGestureRecognizerDirection.right:
                 //debugPrint("Swiped right")
                 
-                self.containerView.frame.origin.x = -200
+                // self.containerView.frame.origin.x = -200
+                self.prevView.frame.origin.x = -433
                 
                 pendingTask = DispatchWorkItem {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.overlayView.alpha = 0.5
+                        // self.overlayView.alpha = 0.5
                         self.containerView.alpha = 0.5
-                        self.containerView.frame.origin.x = 0
+                        // self.containerView.frame.origin.x = 0
+                        
+                        self.prevView.alpha = 1.0
+                        self.prevView.frame.origin.x = 0
+                        
                     }, completion: nil)
                 }
                 
                 pendingTask2 = DispatchWorkItem {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.overlayView.alpha = 0.0
+                        // self.overlayView.alpha = 0.0
                         self.containerView.alpha = 0.0
-                        self.containerView.frame.origin.x = -200
+                        //self.containerView.frame.origin.x = -200
+                        
+                        self.prevView.alpha = 0.0
+                        self.prevView.frame.origin.x = -433
                     }, completion: { (finished: Bool) in
                         self.pageViewController?.scrollToViewController(index: self.resetIndex)
                     })
@@ -418,7 +430,7 @@ class ViewController: UIViewController {
                 
                 pendingTask = DispatchWorkItem {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.overlayView.alpha = 0.5
+                        // self.overlayView.alpha = 0.5
                         self.containerView.alpha = 0.5
                         self.containerView.frame.origin.x = 0
                     }, completion: nil)
@@ -426,7 +438,7 @@ class ViewController: UIViewController {
                 
                 pendingTask2 = DispatchWorkItem {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.overlayView.alpha = 0.0
+                        // self.overlayView.alpha = 0.0
                         self.containerView.alpha = 0.0
                         self.containerView.frame.origin.x = 200
                     }, completion: { (finished: Bool) in
