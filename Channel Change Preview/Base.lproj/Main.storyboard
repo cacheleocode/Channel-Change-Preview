@@ -51,6 +51,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.058823529409999999" green="0.23921568630000001" blue="0.3294117647" alpha="0.5" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fake_ui" translatesAutoresizingMaskIntoConstraints="NO" id="wjr-Vb-0MI">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="U86-eW-DBU" firstAttribute="top" secondItem="FN8-2S-wlo" secondAttribute="bottom" id="9hR-ba-ImR"/>
@@ -65,6 +69,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="U86-eW-DBU" id="4QV-HF-nea"/>
+                        <outlet property="fakeUIView" destination="wjr-Vb-0MI" id="MoL-gl-A9L"/>
                         <outlet property="pageControl" destination="Xvt-1d-6RY" id="FVe-8F-FO2"/>
                         <outlet property="prevView" destination="xHP-ii-Fk8" id="jQv-cM-6an"/>
                         <outlet property="videoView" destination="LaI-8t-do8" id="lzC-iD-KSW"/>
@@ -112,6 +117,10 @@
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="tba-V7-lOD">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                 </viewController>
@@ -142,6 +151,10 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_cbs" translatesAutoresizingMaskIntoConstraints="NO" id="U0W-ch-25z">
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-vA-jOd">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -176,6 +189,10 @@
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="sBN-qh-2qS">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                 </viewController>
@@ -208,6 +225,10 @@
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="ypU-RH-u52">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                 </viewController>
@@ -238,6 +259,10 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_amc" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-vI-wH9">
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-Ca-QjS">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -275,6 +300,10 @@
                                 <rect key="frame" x="852" y="482" width="216" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="2Aj-Dh-SmX">
+                                <rect key="frame" x="192" y="882" width="1536" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </view>
                 </viewController>
@@ -284,12 +313,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fake_ui" width="1920" height="1080"/>
         <image name="keyart_amc" width="1920" height="1080"/>
         <image name="keyart_cbs" width="1920" height="1080"/>
         <image name="keyart_cnn" width="1920" height="1080"/>
         <image name="keyart_csn" width="1920" height="1080"/>
         <image name="keyart_espn" width="1920" height="1080"/>
         <image name="keyart_fox" width="1920" height="1080"/>
+        <image name="loadbar" width="1920" height="24"/>
         <image name="logo_amc" width="107" height="60"/>
         <image name="logo_cbs" width="56" height="55"/>
         <image name="logo_cnn" width="122" height="57"/>

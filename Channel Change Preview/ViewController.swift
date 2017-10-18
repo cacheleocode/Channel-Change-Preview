@@ -6,9 +6,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var prevView: UIView!
-    
+    @IBOutlet weak var fakeUIView: UIImageView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
     
@@ -36,7 +35,6 @@ class ViewController: UIViewController {
     
     var resetOrigin: CGFloat?
     
-    var resetIndex = 0
     var prevIndex = 0
     var nextIndex = 0
     
@@ -232,9 +230,13 @@ class ViewController: UIViewController {
         self.prevView.alpha = 0.0
         self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
         
+        // Fake UI View
+        self.fakeUIView.alpha = 0.0
+        self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
+        
         // Container View
         self.containerView.isHidden = true
-        self.containerView.alpha = 0.0        
+        self.containerView.alpha = 0.0
     }
     
     func doRestartTimer() {
@@ -253,18 +255,33 @@ class ViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0, execute: self.pendingTask2!)
-        
-        
     }
     
     func doInvalidateTimer() {
         pendingTask2?.cancel()
     }
     
+    func doShowFakeUI() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.fakeUIView.alpha = 1.0
+            self.fakeUIView.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
+        }, completion: nil)
+    }
+    
+    func doHideFakeUI() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.fakeUIView.alpha = 0.0
+            self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
+        }, completion: nil)
+    }
+    
     func doHide() {
         UIView.animate(withDuration: 0.3, animations: {
             self.prevView.alpha = 0.0
             self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            
+            self.fakeUIView.alpha = 0.0
+            self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
             
             self.containerView.alpha = 0.0
         }, completion: { (finished: Bool) in
@@ -277,17 +294,14 @@ class ViewController: UIViewController {
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-        debugPrint("hello", gesture)
-        
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-            
-            
-            
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                debugPrint("Swiped right")
-            
+                // debugPrint("Swiped right")
+                
                 direction = "right"
+                
+                // determine previous index, account for loops
                 
                 prevIndex = self.pageControl.currentPage - 1
                 
@@ -295,25 +309,22 @@ class ViewController: UIViewController {
                     prevIndex = 5
                 }
                 
-                if (self.containerView.isHidden) {
-                    debugPrint("hidden")
-                    
-                    pendingTask = DispatchWorkItem {
+                if (self.containerView.isHidden) { // show preview
+                   pendingTask = DispatchWorkItem {
+                        // enable channels to be swiped through
                         self.pageViewController?.scrollToViewController(index: self.prevIndex)
                         self.containerView.isHidden = false
-                        
+                    
+                        // animate preview in
                         UIView.animate(withDuration: 0.3, animations: {
                             self.prevView.alpha = 1.0
                             self.prevView.frame = CGRect(x: 0, y: 0, width: 433, height: 1080)
                         }, completion: nil)
                     }
                     
-                    // show guide
                     DispatchQueue.main.async(execute: self.pendingTask!)
-                    
-                } else {
-                    debugPrint("not hidden")
-                    
+                } else { // show channel
+                    // animate tuning to channel
                     UIView.animate(withDuration: 0.3, animations: {
                         self.surfing = true
                         
@@ -323,6 +334,7 @@ class ViewController: UIViewController {
                         self.containerView.alpha = 1.0
                         
                     }, completion: { (finished: Bool) in
+                        // reset preview position
                         self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
                     })
                 }
@@ -330,12 +342,14 @@ class ViewController: UIViewController {
             case UISwipeGestureRecognizerDirection.down:
                 debugPrint("Swiped down")
             case UISwipeGestureRecognizerDirection.left:
-                //debugPrint("Swiped left")
+                // debugPrint("Swiped left")
                 
                 direction = "left"
                 
             case UISwipeGestureRecognizerDirection.up:
-                debugPrint("Swiped up")
+                // debugPrint("Swiped up")
+                
+                self.doShowFakeUI()
             default:
                 break
             }
@@ -343,28 +357,8 @@ class ViewController: UIViewController {
     }
     
     func doChannelChange() {
-        
-        
-        /*
-         // show guide
-         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
-         self.queue.async(execute: self.pendingTask!)
-         }
-         
-         
-         // hide guide
-         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
-         self.queue.async(execute: self.pendingTask2!)
-         }
-         */
-        
-        resetIndex = pageControl.currentPage
-        
         switch pageControl.currentPage {
         case 0: // AMC
-            
-            
-            
             playerLayer?.player?.isMuted = false
             playerLayer?.isHidden = false
             guideLayer?.isHidden = false
@@ -389,8 +383,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = true
             guideLayerFOX?.isHidden = true
             
-            
-        //debugPrint("0")
+            //debugPrint("0")
         case 1: // CBS
             
             playerLayer?.player?.isMuted = true
@@ -417,8 +410,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = true
             guideLayerFOX?.isHidden = true
             
-            
-        //debugPrint("1")
+            //debugPrint("1")
         case 2: // CNN
             playerLayer?.player?.isMuted = true
             playerLayer?.isHidden = true
@@ -444,8 +436,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = true
             guideLayerFOX?.isHidden = true
             
-            
-        //debugPrint("2")
+            //debugPrint("2")
         case 3: // CSN
             playerLayer?.player?.isMuted = true
             playerLayer?.isHidden = true
@@ -471,8 +462,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = true
             guideLayerFOX?.isHidden = true
             
-            
-        //debugPrint("3")
+            //debugPrint("3")
         case 4: // ESPN
             playerLayer?.player?.isMuted = true
             playerLayer?.isHidden = true
@@ -498,8 +488,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = true
             guideLayerFOX?.isHidden = true
             
-            
-        //debugPrint("4")
+            //debugPrint("4")
         case 5: // FOX
             playerLayer?.player?.isMuted = true
             playerLayer?.isHidden = true
@@ -525,8 +514,7 @@ class ViewController: UIViewController {
             playerLayerFOX?.isHidden = false
             guideLayerFOX?.isHidden = false
             
-            
-        //debugPrint("5")
+            //debugPrint("5")
         default:
             debugPrint("default")
         }
@@ -542,13 +530,11 @@ class ViewController: UIViewController {
         pageViewController?.scrollToNextViewController()
     }
     
-    /**
-     Fired when the user taps on the pageControl to change its current page.
-     */
+    // Fired when the user taps on the pageControl to change its current page
+    
     func didChangePageControlValue() {
         pageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
-    
     
     @IBAction func didSwipe(_ sender: Any) {
         debugPrint("in deep")
@@ -558,20 +544,10 @@ class ViewController: UIViewController {
         if(presses.first?.type == UIPressType.menu) {
             self.doHide()
         }
-        
-        /*
-        if(presses.first?.type == UIPressType.menu) {
-            self.doHide()
-        } else {
-            // perform default action (in your case, exit)
-            super.pressesBegan(presses, with: event)
-        }
-        */
     }
 }
 
 extension ViewController: PageViewControllerDelegate {
-    
     func pageViewController(_ pageViewController: PageViewController,
                             didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
@@ -580,6 +556,5 @@ extension ViewController: PageViewControllerDelegate {
     func pageViewController(_ pageViewController: PageViewController,
                             didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
-        
     }
 }

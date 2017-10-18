@@ -22,7 +22,6 @@
 		8D856A371F95E20600E57C81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A361F95E20600E57C81 /* main.swift */; };
 		8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A381F95E21400E57C81 /* UIApplication.swift */; };
 		8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A3A1F95E33E00E57C81 /* PageViewController.swift */; };
-		8D856A471F96AA2900E57C81 /* ChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A451F96AA2900E57C81 /* ChannelViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		8D856A361F95E20600E57C81 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8D856A381F95E21400E57C81 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		8D856A3A1F95E33E00E57C81 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		8D856A451F96AA2900E57C81 /* ChannelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +87,6 @@
 				8D856A381F95E21400E57C81 /* UIApplication.swift */,
 				8D856A191F95DF7300E57C81 /* ViewController.swift */,
 				8D856A3A1F95E33E00E57C81 /* PageViewController.swift */,
-				8D856A451F96AA2900E57C81 /* ChannelViewController.xib */,
 				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
 				8D856A1E1F95DF7300E57C81 /* Assets.xcassets */,
 				8D856A201F95DF7300E57C81 /* Info.plist */,
@@ -162,7 +159,6 @@
 				8D856A2E1F95DFC600E57C81 /* amc.mp4 in Resources */,
 				8D856A2F1F95DFC600E57C81 /* cbs.mp4 in Resources */,
 				8D856A301F95DFC600E57C81 /* cnn.mp4 in Resources */,
-				8D856A471F96AA2900E57C81 /* ChannelViewController.xib in Resources */,
 				8D856A311F95DFC600E57C81 /* csn.mp4 in Resources */,
 				8D856A321F95DFC600E57C81 /* espn.mp4 in Resources */,
 				8D856A331F95DFC600E57C81 /* fox.mp4 in Resources */,

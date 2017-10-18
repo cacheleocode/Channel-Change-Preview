@@ -12,6 +12,7 @@ class MyApplication: UIApplication {
         // Ignore .Motion and .RemoteControl event simply everything else then .Touches
         if event.type != .touches {
             super.sendEvent(event)
+            
             return
         }
         
@@ -22,6 +23,7 @@ class MyApplication: UIApplication {
             for touch in touches.enumerated() {
                 if touch.element.phase != .cancelled && touch.element.phase != .ended {
                     restartTimer = false
+                    
                     break
                 }
             }

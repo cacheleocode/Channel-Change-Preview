@@ -17,29 +17,6 @@ class PageViewController: UIPageViewController {
             self.newChannelViewController("CSN"),
             self.newChannelViewController("ESPN"),
             self.newChannelViewController("FOX")]
-        
-        
-        /*
-         return [
-         self.newChannelViewController("xAMC"),
-         self.newChannelViewController("AMC"),
-         self.newChannelViewController("AMCx"),
-         self.newChannelViewController("xCBS"),
-         self.newChannelViewController("CBS"),
-         self.newChannelViewController("CBSx"),
-         self.newChannelViewController("xCNN"),
-         self.newChannelViewController("CNN"),
-         self.newChannelViewController("CNNx"),
-         self.newChannelViewController("xCSN"),
-         self.newChannelViewController("CSN"),
-         self.newChannelViewController("CSNx"),
-         self.newChannelViewController("xESPN"),
-         self.newChannelViewController("ESPN"),
-         self.newChannelViewController("ESPNx"),
-         self.newChannelViewController("xFOX"),
-         self.newChannelViewController("FOX"),
-         self.newChannelViewController("FOXx")]
-         */
     }()
     
     override func viewDidLoad() {
@@ -53,17 +30,10 @@ class PageViewController: UIPageViewController {
         }
         
         gotDelegate?.pageViewController(self, didUpdatePageCount: orderedViewControllers.count)
-
     }
     
-    func doSelect(index newIndex: Int) {
-        
-    }
-
     
-    /**
-     Scrolls to the next view controller.
-     */
+    // Scrolls to the next view controller
     func scrollToNextViewController() {
         if let visibleViewController = viewControllers?.first,
             let nextViewController = pageViewController(self,
@@ -80,7 +50,7 @@ class PageViewController: UIPageViewController {
         }
     }
     
-    /**
+    /*
      Scrolls to the view controller at the given index. Automatically calculates
      the direction.
      
@@ -163,7 +133,7 @@ extension PageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
-            debugPrint("initial thing")
+            // debugPrint("initial thing")
             return nil
         }
         
@@ -172,12 +142,12 @@ extension PageViewController: UIPageViewControllerDataSource {
         // User is on the first view controller and swiped left to loop to
         // the last view controller.
         guard previousIndex >= 0 else {
-            debugPrint("loop")
+            // debugPrint("loop")
             return orderedViewControllers.last
         }
         
         guard orderedViewControllers.count > previousIndex else {
-            debugPrint("normal?")
+            // debugPrint("normal?")
             return nil
         }
         
