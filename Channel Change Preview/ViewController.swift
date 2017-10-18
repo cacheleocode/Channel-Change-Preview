@@ -7,6 +7,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var prevView: UIView!
+    @IBOutlet weak var nextView: UIView!
     @IBOutlet weak var fakeUIView: UIImageView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
@@ -34,6 +35,8 @@ class ViewController: UIViewController {
     var direction = ""
     
     var resetOrigin: CGFloat?
+    var visibleOrigin: CGFloat?
+    var previewView: UIView?
     
     var prevIndex = 0
     var nextIndex = 0
@@ -230,6 +233,10 @@ class ViewController: UIViewController {
         self.prevView.alpha = 0.0
         self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
         
+        // Next View
+        self.nextView.alpha = 0.0
+        self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
+        
         // Fake UI View
         self.fakeUIView.alpha = 0.0
         self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
@@ -240,12 +247,6 @@ class ViewController: UIViewController {
     }
     
     func doRestartTimer() {
-        if (direction == "left") {
-            resetOrigin = 200
-        } else {
-            resetOrigin = -433
-        }
-        
         pendingTask2 = DispatchWorkItem {
             if (self.surfing) {
                 self.doChannelChange()
@@ -280,6 +281,9 @@ class ViewController: UIViewController {
             self.prevView.alpha = 0.0
             self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
             
+            self.nextView.alpha = 0.0
+            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
+            
             self.fakeUIView.alpha = 0.0
             self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
             
@@ -288,9 +292,53 @@ class ViewController: UIViewController {
             self.surfing = false
             
             self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
             
             self.containerView.isHidden = true
         })
+    }
+    
+    func doShow(direction: String, index: Int) {
+        if (direction == "left") {
+            resetOrigin = 1920
+            visibleOrigin = 1487
+            previewView = self.nextView
+        } else {
+            resetOrigin = -433
+            visibleOrigin = 0
+            previewView = self.prevView
+        }
+        
+        if (self.containerView.isHidden) { // show preview
+            pendingTask = DispatchWorkItem {
+                // enable channels to be swiped through
+                self.pageViewController?.scrollToViewController(index: index)
+                self.containerView.isHidden = false
+                
+                // animate preview in
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.previewView?.alpha = 1.0
+                    self.previewView?.frame = CGRect(x: self.visibleOrigin!, y: 0, width: 433, height: 1080)
+                }, completion: nil)
+            }
+            
+            DispatchQueue.main.async(execute: self.pendingTask!)
+        } else { // show channel
+            // animate tuning to channel
+            UIView.animate(withDuration: 0.3, animations: {
+                self.surfing = true
+                
+                self.previewView?.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
+                self.previewView?.alpha = 0.0
+                
+                self.containerView.alpha = 1.0
+                
+            }, completion: { (finished: Bool) in
+                // reset preview position
+                self.previewView?.frame = CGRect(x: self.resetOrigin!, y: 0, width: 433, height: 1080)
+            })
+        }
+
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -309,35 +357,7 @@ class ViewController: UIViewController {
                     prevIndex = 5
                 }
                 
-                if (self.containerView.isHidden) { // show preview
-                   pendingTask = DispatchWorkItem {
-                        // enable channels to be swiped through
-                        self.pageViewController?.scrollToViewController(index: self.prevIndex)
-                        self.containerView.isHidden = false
-                    
-                        // animate preview in
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.prevView.alpha = 1.0
-                            self.prevView.frame = CGRect(x: 0, y: 0, width: 433, height: 1080)
-                        }, completion: nil)
-                    }
-                    
-                    DispatchQueue.main.async(execute: self.pendingTask!)
-                } else { // show channel
-                    // animate tuning to channel
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.surfing = true
-                        
-                        self.prevView.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
-                        self.prevView.alpha = 0.0
-                        
-                        self.containerView.alpha = 1.0
-                        
-                    }, completion: { (finished: Bool) in
-                        // reset preview position
-                        self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
-                    })
-                }
+                self.doShow(direction: direction, index: prevIndex)
                 
             case UISwipeGestureRecognizerDirection.down:
                 debugPrint("Swiped down")
@@ -345,6 +365,16 @@ class ViewController: UIViewController {
                 // debugPrint("Swiped left")
                 
                 direction = "left"
+                
+                // determine previous index, account for loops
+                
+                nextIndex = self.pageControl.currentPage + 1
+                
+                if (nextIndex > 5) {
+                    nextIndex = 0
+                }
+                
+                self.doShow(direction: direction, index: nextIndex)
                 
             case UISwipeGestureRecognizerDirection.up:
                 // debugPrint("Swiped up")
