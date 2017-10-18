@@ -9,6 +9,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var prevView: UIView!
     
+    
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
     
     var playerLayer: AVPlayerLayer?
@@ -29,17 +30,20 @@ class ViewController: UIViewController {
     var guideLayerHBO: CALayer?
     var guideLayerHSN: CALayer?
     
-    var swipeMode = false
+    var surfing = false
     
     var direction = ""
     
     var resetOrigin: CGFloat?
     
     var resetIndex = 0
+    var prevIndex = 0
+    var nextIndex = 0
     
     var pendingTask: DispatchWorkItem?
     var pendingTask2: DispatchWorkItem?
-    var pendingTask3: DispatchWorkItem?
+    
+    let channel = ChannelViewController()
     
     var pageViewController: PageViewController? {
         didSet {
@@ -77,17 +81,6 @@ class ViewController: UIViewController {
         
         self.videoView.layer.addSublayer(playerLayer!)
         
-        /*
-         // guide AMC
-         guideLayer = CALayer()
-         guideLayer?.contents = UIImage(named: "guide0")?.cgImage
-         guideLayer?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayer!.frame = self.guideView.frame
-         guideLayer?.isHidden = true
-         
-         self.guideView.layer.addSublayer(guideLayer!)
-         */
-        
         // video player CBS
         guard let pathCBS = Bundle.main.path(forResource: "cbs", ofType:"mp4") else {
             debugPrint("video not found")
@@ -112,18 +105,6 @@ class ViewController: UIViewController {
         
         playerCBS.isMuted = true;
         playerCBS.play()
-        
-        
-        /*
-         // guide CBS
-         guideLayerCBS = CALayer()
-         guideLayerCBS?.contents = UIImage(named: "guide1")?.cgImage
-         guideLayerCBS?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayerCBS!.frame = self.guideView.frame
-         guideLayerCBS?.isHidden = true			
-         
-         self.guideView.layer.addSublayer(guideLayerCBS!)
-         */
         
         // video player CNN
         guard let pathCNN = Bundle.main.path(forResource: "cnn", ofType:"mp4") else {
@@ -150,17 +131,6 @@ class ViewController: UIViewController {
         playerCNN.isMuted = true;
         playerCNN.play()
         
-        /*
-         // guide CNN
-         guideLayerCNN = CALayer()
-         guideLayerCNN?.contents = UIImage(named: "guide2")?.cgImage
-         guideLayerCNN?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayerCNN!.frame = self.guideView.frame
-         guideLayerCNN?.isHidden = true
-         
-         self.guideView.layer.addSublayer(guideLayerCNN!)
-         */
-        
         // video player CSN
         guard let pathCSN = Bundle.main.path(forResource: "csn", ofType:"mp4") else {
             debugPrint("video not found")
@@ -185,17 +155,6 @@ class ViewController: UIViewController {
         
         playerCSN.isMuted = true;
         playerCSN.play()
-        
-        /*
-         // guide CSN
-         guideLayerCSN = CALayer()
-         guideLayerCSN?.contents = UIImage(named: "guide3")?.cgImage
-         guideLayerCSN?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayerCSN!.frame = self.guideView.frame
-         guideLayerCSN?.isHidden = true
-         
-         self.guideView.layer.addSublayer(guideLayerCSN!)
-         */
         
         // video player ESPN
         guard let pathESPN = Bundle.main.path(forResource: "espn", ofType:"mp4") else {
@@ -222,17 +181,6 @@ class ViewController: UIViewController {
         playerESPN.isMuted = true;
         playerESPN.play()
         
-        /*
-         // guide ESPN
-         guideLayerESPN = CALayer()
-         guideLayerESPN?.contents = UIImage(named: "guide4")?.cgImage
-         guideLayerESPN?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayerESPN!.frame = self.guideView.frame
-         guideLayerESPN?.isHidden = true
-         
-         self.guideView.layer.addSublayer(guideLayerESPN!)
-         */
-        
         // video player FOX
         guard let pathFOX = Bundle.main.path(forResource: "fox", ofType:"mp4") else {
             debugPrint("video not found")
@@ -258,34 +206,11 @@ class ViewController: UIViewController {
         playerFOX.isMuted = true;
         playerFOX.play()
         
-        /*
-         // guide FOX
-         guideLayerFOX = CALayer()
-         guideLayerFOX?.contents = UIImage(named: "guide5")?.cgImage
-         guideLayerFOX?.contentsGravity = kCAGravityResizeAspectFill
-         guideLayerFOX!.frame = self.guideView.frame
-         guideLayerFOX?.isHidden = true
-         
-         self.guideView.layer.addSublayer(guideLayerFOX!)
-         */
-        
-        
         // add target
         
         pageControl.addTarget(self, action: #selector(ViewController.didChangePageControlValue), for: .valueChanged)
         
-        //pageControl.addTarget(self, action: #selector(ViewController.doChannelChange), for: .allTouchEvents)
-        
-        //pageControl.addTarget(self, action: #selector(self.doChannelChange(_:)), for: .touchUpInside)
-        
         // swipe detection
-        
-        //let tap = UITapGestureRecognizer(target: self, action: #selector(self.respondToTa))
-        
-        //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapBlurButton(_:)))
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.doChannelChange(sender:)))
-        self.view.addGestureRecognizer(tapGesture)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -303,28 +228,34 @@ class ViewController: UIViewController {
         swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.view.addGestureRecognizer(swipeUp)
         
-        // self.overlayView.alpha = 0.0
+        // initial appearance
         
+        // self.channel.overlayView.alpha = 0.0
+        
+        // Prev View
+        self.prevView.alpha = 0.0
+        self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+        
+        // Container View
+        self.containerView.isHidden = true
         self.containerView.alpha = 0.0
         
+        // let bounds = self.containerView.subviews[0].bounds
+        
+        // Channel View Controller, first View
+        // self.containerView.subviews[0].alpha = 0.0
+        // self.containerView.subviews[0].bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: 433, height: 1080)
+        // self.containerView.subviews[0].subviews[0].alpha = 0.0
+        
         /*
-         let taskShowGuide = DispatchWorkItem {
-         
-         self.doShowGuide()
-         }
-         
-         let taskHideGuide = DispatchWorkItem {
-         self.doHideGuide()
-         }
-         
-         pendingTask = taskShowGuide
-         pendingTask2 = taskHideGuide
-         */
+        for subview in self.containerView.subviews[0].subviews {
+            subview.alpha = 0.0
+            subview.bounds = CGRect(x: 0, y: 0, width: 1920, height: 1080)
+        }
+        */
     }
     
     func doRestartTimer() {
-        print("restart")
-        
         if (direction == "left") {
             resetOrigin = 200
         } else {
@@ -332,125 +263,98 @@ class ViewController: UIViewController {
         }
         
         pendingTask2 = DispatchWorkItem {
-            UIView.animate(withDuration: 0.3, animations: {
-                // self.overlayView.alpha = 0.0
-                self.containerView.alpha = 0.0
-                //self.containerView.frame.origin.x = -200
-                
-                self.prevView.alpha = 0.0
-                self.prevView.frame.origin.x = self.resetOrigin!
-            }, completion: { (finished: Bool) in
-                self.pageViewController?.scrollToViewController(index: self.resetIndex)
-            })
+            if (self.surfing) {
+                self.doChannelChange()
+            }
+            
+            self.doHide()
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0, execute: self.pendingTask2!)
+        
+        
     }
     
     func doInvalidateTimer() {
-        print("invalidate")
-        
         pendingTask2?.cancel()
     }
     
-    func doShowGuide() {
+    func doHide() {
         UIView.animate(withDuration: 0.3, animations: {
-            self.containerView.alpha = 0.5
-            debugPrint("fade in final")
+            self.prevView.alpha = 0.0
+            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            
+            self.containerView.alpha = 0.0
         }, completion: { (finished: Bool) in
-            // something
+            self.surfing = false
+            
+            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            
+            self.containerView.isHidden = true
         })
     }
     
-    func doBuffer() {
-        debugPrint("waiting")
-    }
-    
-    func doHideGuide() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.containerView.alpha = 0.0
-            debugPrint("fade out final")
-            
-            self.pageViewController?.scrollToViewController(index: self.resetIndex)
-            
-        }, completion: nil)
-    }
-    
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        debugPrint("hello", gesture)
+        
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            
             
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                //debugPrint("Swiped right")
-                
-                // self.containerView.frame.origin.x = -200
-                self.prevView.frame.origin.x = -433
-                
-                pendingTask = DispatchWorkItem {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        // self.overlayView.alpha = 0.5
-                        self.containerView.alpha = 0.5
-                        // self.containerView.frame.origin.x = 0
-                        
-                        self.prevView.alpha = 1.0
-                        self.prevView.frame.origin.x = 0
-                        
-                        
-                    }, completion: nil)
-                }
-                
-                pendingTask2 = DispatchWorkItem {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        // self.overlayView.alpha = 0.0
-                        self.containerView.alpha = 0.0
-                        //self.containerView.frame.origin.x = -200
-                        
-                        self.prevView.alpha = 0.0
-                        self.prevView.frame.origin.x = -433
-                    }, completion: { (finished: Bool) in
-                        self.pageViewController?.scrollToViewController(index: self.resetIndex)
-                    })
-                }
-                
+                debugPrint("Swiped right")
+            
                 direction = "right"
                 
+                prevIndex = self.pageControl.currentPage - 1
                 
-                // show guide
-                DispatchQueue.main.async(execute: self.pendingTask!)
+                if (prevIndex < 0) {
+                    prevIndex = 5
+                }
                 
-                // hide guide
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0, execute: self.pendingTask2!)
+                if (self.containerView.isHidden) {
+                    debugPrint("hidden")
+                    
+                    pendingTask = DispatchWorkItem {
+                        self.pageViewController?.scrollToViewController(index: self.prevIndex)
+                        self.containerView.isHidden = false
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.prevView.alpha = 1.0
+                            self.prevView.frame = CGRect(x: 0, y: 0, width: 433, height: 1080)
+                        }, completion: nil)
+                    }
+                    
+                    // show guide
+                    DispatchQueue.main.async(execute: self.pendingTask!)
+                    
+                } else {
+                    debugPrint("not hidden")
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.surfing = true
+                        
+                        self.prevView.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
+                        
+                        
+                    }, completion: { (finished: Bool) in
+                        
+                        
+                        UIView.animate(withDuration: 0.3, animations: {
+                            self.prevView.alpha = 0.0
+                            self.containerView.alpha = 1.0
+                        }, completion: nil)
+                        
+                        self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+                    })
                 
+                }
                 
             case UISwipeGestureRecognizerDirection.down:
                 debugPrint("Swiped down")
             case UISwipeGestureRecognizerDirection.left:
                 //debugPrint("Swiped left")
-                
-                self.containerView.frame.origin.x = 200
-                
-                pendingTask = DispatchWorkItem {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        // self.overlayView.alpha = 0.5
-                        self.containerView.alpha = 0.5
-                        self.containerView.frame.origin.x = 0
-                    }, completion: nil)
-                }
-                
-                pendingTask2 = DispatchWorkItem {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        // self.overlayView.alpha = 0.0
-                        self.containerView.alpha = 0.0
-                        self.containerView.frame.origin.x = 200
-                    }, completion: { (finished: Bool) in
-                        self.pageViewController?.scrollToViewController(index: self.resetIndex)
-                    })
-                }
-                // show guide
-                DispatchQueue.main.async(execute: self.pendingTask!)
-                
-                // hide guide
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0, execute: self.pendingTask2!)
                 
                 direction = "left"
                 
@@ -462,7 +366,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func doChannelChange(sender: UITapGestureRecognizer) {
+    func doChannelChange() {
         
         
         /*
@@ -672,6 +576,21 @@ class ViewController: UIViewController {
     
     @IBAction func didSwipe(_ sender: Any) {
         debugPrint("in deep")
+    }
+    
+    override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        if(presses.first?.type == UIPressType.menu) {
+            self.doHide()
+        }
+        
+        /*
+        if(presses.first?.type == UIPressType.menu) {
+            self.doHide()
+        } else {
+            // perform default action (in your case, exit)
+            super.pressesBegan(presses, with: event)
+        }
+        */
     }
 }
 
