@@ -8,6 +8,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var prevView: UIView!
     @IBOutlet weak var nextView: UIView!
+    @IBOutlet weak var previewLogoView: UIImageView!
     @IBOutlet weak var fakeUIView: UIImageView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
@@ -50,6 +51,15 @@ class ViewController: UIViewController {
         }
     }
     
+    var logoImage: [UIImage] = [
+        UIImage(named: "logo_amc.png")!,
+        UIImage(named: "logo_cbs.png")!,
+        UIImage(named: "logo_cnn.png")!,
+        UIImage(named: "logo_csn.png")!,
+        UIImage(named: "logo_espn.png")!,
+        UIImage(named: "logo_fox.png")!
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -303,6 +313,8 @@ class ViewController: UIViewController {
             resetOrigin = 1920
             visibleOrigin = 1487
             previewView = self.nextView
+            
+            previewLogoView.image = logoImage[index]
         } else {
             resetOrigin = -433
             visibleOrigin = 0
