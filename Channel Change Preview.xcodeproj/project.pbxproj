@@ -22,7 +22,6 @@
 		8D856A371F95E20600E57C81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A361F95E20600E57C81 /* main.swift */; };
 		8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A381F95E21400E57C81 /* UIApplication.swift */; };
 		8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A3A1F95E33E00E57C81 /* PageViewController.swift */; };
-		8D856A461F96AA2900E57C81 /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A441F96AA2900E57C81 /* ChannelViewController.swift */; };
 		8D856A471F96AA2900E57C81 /* ChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D856A451F96AA2900E57C81 /* ChannelViewController.xib */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		8D856A361F95E20600E57C81 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8D856A381F95E21400E57C81 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		8D856A3A1F95E33E00E57C81 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		8D856A441F96AA2900E57C81 /* ChannelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
 		8D856A451F96AA2900E57C81 /* ChannelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +89,6 @@
 				8D856A381F95E21400E57C81 /* UIApplication.swift */,
 				8D856A191F95DF7300E57C81 /* ViewController.swift */,
 				8D856A3A1F95E33E00E57C81 /* PageViewController.swift */,
-				8D856A441F96AA2900E57C81 /* ChannelViewController.swift */,
 				8D856A451F96AA2900E57C81 /* ChannelViewController.xib */,
 				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
 				8D856A1E1F95DF7300E57C81 /* Assets.xcassets */,
@@ -185,7 +182,6 @@
 				8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */,
 				8D856A1A1F95DF7300E57C81 /* ViewController.swift in Sources */,
 				8D856A181F95DF7300E57C81 /* AppDelegate.swift in Sources */,
-				8D856A461F96AA2900E57C81 /* ChannelViewController.swift in Sources */,
 				8D856A371F95E20600E57C81 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

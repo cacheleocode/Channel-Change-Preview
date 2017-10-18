@@ -43,8 +43,6 @@ class ViewController: UIViewController {
     var pendingTask: DispatchWorkItem?
     var pendingTask2: DispatchWorkItem?
     
-    let channel = ChannelViewController()
-    
     var pageViewController: PageViewController? {
         didSet {
             pageViewController?.gotDelegate = self
@@ -230,29 +228,13 @@ class ViewController: UIViewController {
         
         // initial appearance
         
-        // self.channel.overlayView.alpha = 0.0
-        
         // Prev View
         self.prevView.alpha = 0.0
         self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
         
         // Container View
         self.containerView.isHidden = true
-        self.containerView.alpha = 0.0
-        
-        // let bounds = self.containerView.subviews[0].bounds
-        
-        // Channel View Controller, first View
-        // self.containerView.subviews[0].alpha = 0.0
-        // self.containerView.subviews[0].bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y, width: 433, height: 1080)
-        // self.containerView.subviews[0].subviews[0].alpha = 0.0
-        
-        /*
-        for subview in self.containerView.subviews[0].subviews {
-            subview.alpha = 0.0
-            subview.bounds = CGRect(x: 0, y: 0, width: 1920, height: 1080)
-        }
-        */
+        self.containerView.alpha = 0.0        
     }
     
     func doRestartTimer() {
@@ -336,19 +318,13 @@ class ViewController: UIViewController {
                         self.surfing = true
                         
                         self.prevView.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
+                        self.prevView.alpha = 0.0
                         
+                        self.containerView.alpha = 1.0
                         
                     }, completion: { (finished: Bool) in
-                        
-                        
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.prevView.alpha = 0.0
-                            self.containerView.alpha = 1.0
-                        }, completion: nil)
-                        
                         self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
                     })
-                
                 }
                 
             case UISwipeGestureRecognizerDirection.down:
