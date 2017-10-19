@@ -425,6 +425,8 @@ class ViewController: UIViewController {
                 
                 self.doShow(newDirection: direction, index: self.prevIndex!)
                 
+                } else {
+                    self.doHide()
                 }
                 
             case UISwipeGestureRecognizerDirection.down:
@@ -446,6 +448,8 @@ class ViewController: UIViewController {
                 
                 self.doShow(newDirection: direction, index: self.nextIndex!)
                 
+                } else {
+                    self.doHide()
                 }
                 
             case UISwipeGestureRecognizerDirection.up:
