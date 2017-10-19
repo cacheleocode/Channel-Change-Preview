@@ -380,6 +380,9 @@ class ViewController: UIViewController {
         // reset channel
         self.pageViewController?.scrollToViewController(index: self.resetIndex)
         
+        // reset direction
+        self.oldDirection = nil
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.prevView.alpha = 0.0
             self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
@@ -410,6 +413,8 @@ class ViewController: UIViewController {
                 
                 direction = "right"
                 
+                if (self.oldDirection == nil || self.oldDirection == direction) {
+                
                 // determine previous index, account for loops
                 
                 self.prevIndex = self.pageControl.currentPage - 1
@@ -420,12 +425,16 @@ class ViewController: UIViewController {
                 
                 self.doShow(newDirection: direction, index: self.prevIndex!)
                 
+                }
+                
             case UISwipeGestureRecognizerDirection.down:
                 debugPrint("Swiped down")
             case UISwipeGestureRecognizerDirection.left:
                 // debugPrint("Swiped left")
                 
                 direction = "left"
+                
+                if (self.oldDirection == nil || self.oldDirection == direction) {
                 
                 // determine previous index, account for loops
                 
@@ -437,6 +446,7 @@ class ViewController: UIViewController {
                 
                 self.doShow(newDirection: direction, index: self.nextIndex!)
                 
+                }
                 
             case UISwipeGestureRecognizerDirection.up:
                 // debugPrint("Swiped up")
