@@ -7,8 +7,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var prevView: UIView!
+    @IBOutlet weak var prevLogoView: UIImageView!
+    @IBOutlet weak var prevTitleView: UILabel!
+    @IBOutlet weak var prevMetadataView: UILabel!
     @IBOutlet weak var nextView: UIView!
-    @IBOutlet weak var previewLogoView: UIImageView!
+    @IBOutlet weak var nextLogoView: UIImageView!
+    @IBOutlet weak var nextTitleView: UILabel!
+    @IBOutlet weak var nextMetadataView: UILabel!
     @IBOutlet weak var fakeUIView: UIImageView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
@@ -34,13 +39,19 @@ class ViewController: UIViewController {
     var surfing = false
     
     var direction = ""
+    var oldDirection: String?
+    var prevChanged = false
+    var nextChanged = false
     
     var resetOrigin: CGFloat?
     var visibleOrigin: CGFloat?
     var previewView: UIView?
     
-    var prevIndex = 0
-    var nextIndex = 0
+    var resetIndex = 0
+    var prevIndex: Int?
+    var nextIndex: Int?
+    var oldIndex: Int?
+    var newIndex: Int?
     
     var pendingTask: DispatchWorkItem?
     var pendingTask2: DispatchWorkItem?
@@ -51,15 +62,30 @@ class ViewController: UIViewController {
         }
     }
     
-    var logoImage: [UIImage] = [
-        UIImage(named: "logo_amc.png")!,
-        UIImage(named: "logo_cbs.png")!,
-        UIImage(named: "logo_cnn.png")!,
-        UIImage(named: "logo_csn.png")!,
-        UIImage(named: "logo_espn.png")!,
-        UIImage(named: "logo_fox.png")!
+    var logoImages: [UIImage] = [#imageLiteral(resourceName: "logo_amc"),#imageLiteral(resourceName: "logo_cbs"),#imageLiteral(resourceName: "logo_cnn"),#imageLiteral(resourceName: "logo_csn"),#imageLiteral(resourceName: "logo_espn"),#imageLiteral(resourceName: "logo_fox")]
+    
+    var channelTitle: Array = [
+        "The Walking Dead",
+        "The Talk",
+        "State of the Union",
+        "MIL vs SAC",
+        "UCLA vs AZW",
+        "Empire"
     ]
-
+    
+    var channelDescription: Array = [
+        "S2 E7 | The Other Side",
+         "S7 EP182 | Actress Salma Hayek",
+         "S77 E2 | Gary Johnson",
+         "2017",
+         "2017",
+         "S2 E3 | Bout that"
+    ]
+    
+    var randomNum: UInt32?
+    var someInt: Int?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -265,7 +291,14 @@ class ViewController: UIViewController {
             self.doHide()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0, execute: self.pendingTask2!)
+        if (self.surfing) {
+            self.randomNum = arc4random_uniform(1000) // range
+            self.someInt = Int(self.randomNum!) + 500
+        } else {
+            self.someInt = 3000
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(someInt!), execute: self.pendingTask2!)
     }
     
     func doInvalidateTimer() {
@@ -273,6 +306,8 @@ class ViewController: UIViewController {
     }
     
     func doShowFakeUI() {
+        self.doHide()
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.fakeUIView.alpha = 1.0
             self.fakeUIView.frame = CGRect(x: 0, y: 0, width: 1920, height: 1080)
@@ -286,35 +321,11 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     
-    func doHide() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.prevView.alpha = 0.0
-            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
-            
-            self.nextView.alpha = 0.0
-            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
-            
-            self.fakeUIView.alpha = 0.0
-            self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
-            
-            self.containerView.alpha = 0.0
-        }, completion: { (finished: Bool) in
-            self.surfing = false
-            
-            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
-            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
-            
-            self.containerView.isHidden = true
-        })
-    }
-    
-    func doShow(direction: String, index: Int) {
-        if (direction == "left") {
+    func doShow(newDirection: String, index: Int) {
+        if (newDirection == "left") {
             resetOrigin = 1920
             visibleOrigin = 1487
             previewView = self.nextView
-            
-            previewLogoView.image = logoImage[index]
         } else {
             resetOrigin = -433
             visibleOrigin = 0
@@ -326,6 +337,17 @@ class ViewController: UIViewController {
                 // enable channels to be swiped through
                 self.pageViewController?.scrollToViewController(index: index)
                 self.containerView.isHidden = false
+            
+                
+                // set preview metadata
+                
+                self.prevLogoView.image = self.logoImages[index]
+                self.prevTitleView.text = self.channelTitle[index]
+                self.prevMetadataView.text = self.channelDescription[index]
+                
+                self.nextLogoView.image = self.logoImages[index]
+                self.nextTitleView.text = self.channelTitle[index]
+                self.nextMetadataView.text = self.channelDescription[index]
                 
                 // animate preview in
                 UIView.animate(withDuration: 0.3, animations: {
@@ -350,7 +372,34 @@ class ViewController: UIViewController {
                 self.previewView?.frame = CGRect(x: self.resetOrigin!, y: 0, width: 433, height: 1080)
             })
         }
-
+        
+        self.oldDirection = newDirection
+    }
+    
+    func doHide() {
+        // reset channel
+        self.pageViewController?.scrollToViewController(index: self.resetIndex)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.prevView.alpha = 0.0
+            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            
+            self.nextView.alpha = 0.0
+            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
+            
+            self.fakeUIView.alpha = 0.0
+            self.fakeUIView.frame = CGRect(x: 0, y: 1080, width: 1920, height: 1080)
+            
+            self.containerView.alpha = 0.0
+        }, completion: { (finished: Bool) in
+            self.surfing = false
+            
+            self.prevView.frame = CGRect(x: -433, y: 0, width: 433, height: 1080)
+            self.nextView.frame = CGRect(x: 1920, y: 0, width: 433, height: 1080)
+            
+            self.containerView.isHidden = true
+            
+        })
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -363,13 +412,13 @@ class ViewController: UIViewController {
                 
                 // determine previous index, account for loops
                 
-                prevIndex = self.pageControl.currentPage - 1
+                self.prevIndex = self.pageControl.currentPage - 1
                 
-                if (prevIndex < 0) {
-                    prevIndex = 5
+                if (self.prevIndex! < 0) {
+                    self.prevIndex = 5
                 }
                 
-                self.doShow(direction: direction, index: prevIndex)
+                self.doShow(newDirection: direction, index: self.prevIndex!)
                 
             case UISwipeGestureRecognizerDirection.down:
                 debugPrint("Swiped down")
@@ -380,13 +429,14 @@ class ViewController: UIViewController {
                 
                 // determine previous index, account for loops
                 
-                nextIndex = self.pageControl.currentPage + 1
+                self.nextIndex = self.pageControl.currentPage + 1
                 
-                if (nextIndex > 5) {
-                    nextIndex = 0
+                if (self.nextIndex! > 5) {
+                    self.nextIndex = 0
                 }
                 
-                self.doShow(direction: direction, index: nextIndex)
+                self.doShow(newDirection: direction, index: self.nextIndex!)
+                
                 
             case UISwipeGestureRecognizerDirection.up:
                 // debugPrint("Swiped up")
@@ -399,6 +449,8 @@ class ViewController: UIViewController {
     }
     
     func doChannelChange() {
+        resetIndex = pageControl.currentPage
+        
         switch pageControl.currentPage {
         case 0: // AMC
             playerLayer?.player?.isMuted = false
