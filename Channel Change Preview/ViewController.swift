@@ -245,6 +245,10 @@ class ViewController: UIViewController {
         
         pageControl.addTarget(self, action: #selector(ViewController.didChangePageControlValue), for: .valueChanged)
         
+        // tap detection
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.respondToTapGesture))
+        self.view.addGestureRecognizer(tapGesture)
+        
         // swipe detection
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -405,6 +409,22 @@ class ViewController: UIViewController {
         })
     }
     
+    
+    
+    func respondToTapGesture(gesture: UIGestureRecognizer) {
+        if (self.prevView.alpha == 0.0 && self.nextView.alpha == 0.0) { // neutral
+            // nothing
+        } else {
+            // self.direction != ""
+            if (self.direction == "left") {
+                self.doShow(newDirection: self.direction, index: self.nextIndex!)
+            } else {
+                self.doShow(newDirection: self.direction, index: self.prevIndex!)
+            }
+        }
+    }
+    
+    
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
@@ -462,7 +482,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func doChannelChange() {
+    func doChannelChange(sender: UITapGestureRecognizer? = nil) {
         resetIndex = pageControl.currentPage
         
         switch pageControl.currentPage {
