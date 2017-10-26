@@ -22,6 +22,8 @@
 		8D856A371F95E20600E57C81 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A361F95E20600E57C81 /* main.swift */; };
 		8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A381F95E21400E57C81 /* UIApplication.swift */; };
 		8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D856A3A1F95E33E00E57C81 /* PageViewController.swift */; };
+		8D973C541F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D973C531F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift */; };
+		8D973C561F9EAEDE00D8779E /* SpeedBumpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D973C551F9EAEDE00D8779E /* SpeedBumpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		8D856A361F95E20600E57C81 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8D856A381F95E21400E57C81 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		8D856A3A1F95E33E00E57C81 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		8D973C531F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBumpPageContentViewController.swift; sourceTree = "<group>"; };
+		8D973C551F9EAEDE00D8779E /* SpeedBumpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBumpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				8D856A191F95DF7300E57C81 /* ViewController.swift */,
 				8D856A3A1F95E33E00E57C81 /* PageViewController.swift */,
 				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
+				8D973C551F9EAEDE00D8779E /* SpeedBumpViewController.swift */,
+				8D973C531F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift */,
 				8D856A1E1F95DF7300E57C81 /* Assets.xcassets */,
 				8D856A201F95DF7300E57C81 /* Info.plist */,
 			);
@@ -174,7 +180,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D973C561F9EAEDE00D8779E /* SpeedBumpViewController.swift in Sources */,
 				8D856A391F95E21400E57C81 /* UIApplication.swift in Sources */,
+				8D973C541F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift in Sources */,
 				8D856A3B1F95E33E00E57C81 /* PageViewController.swift in Sources */,
 				8D856A1A1F95DF7300E57C81 /* ViewController.swift in Sources */,
 				8D856A181F95DF7300E57C81 /* AppDelegate.swift in Sources */,
@@ -336,6 +344,7 @@
 				8D856A251F95DF7300E57C81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

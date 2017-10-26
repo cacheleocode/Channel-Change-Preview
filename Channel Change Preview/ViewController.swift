@@ -411,7 +411,7 @@ class ViewController: UIViewController {
     
     
     
-    func respondToTapGesture(gesture: UIGestureRecognizer) {
+    func respondToTapGesture(gesture: UITapGestureRecognizer) {
         if (self.prevView.alpha == 0.0 && self.nextView.alpha == 0.0) { // neutral
             // nothing
         } else {
@@ -423,7 +423,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
