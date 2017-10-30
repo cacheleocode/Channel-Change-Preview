@@ -241,8 +241,10 @@ class ViewController: UIViewController {
         playerFOX.isMuted = true;
         playerFOX.play()
         
-        // add target
+        // resume playback upon app focus
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForegroundNotification), name: .UIApplicationWillEnterForeground, object: nil)
         
+        // add target
         pageControl.addTarget(self, action: #selector(ViewController.didChangePageControlValue), for: .valueChanged)
         
         // tap detection
@@ -284,6 +286,24 @@ class ViewController: UIViewController {
         // Container View
         self.containerView.isHidden = true
         self.containerView.alpha = 0.0
+    }
+    
+    func appWillEnterForegroundNotification() {
+        playerLayer?.isHidden = false
+        playerLayerCBS?.isHidden = false
+        playerLayerCNN?.isHidden = false
+        playerLayerCSN?.isHidden = false
+        playerLayerESPN?.isHidden = false
+        playerLayerFOX?.isHidden = false
+        
+        playerLayer?.player?.isMuted = false
+        
+        playerLayer?.player?.play()
+        playerLayerCBS?.player?.play()
+        playerLayerCNN?.player?.play()
+        playerLayerCSN?.player?.play()
+        playerLayerESPN?.player?.play()
+        playerLayerFOX?.player?.play()
     }
     
     func doRestartTimer() {
