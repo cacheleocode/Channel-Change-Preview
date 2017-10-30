@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="-640"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="0lZ-ib-WDV">
             <objects>
-                <viewController storyboardIdentifier="CSNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vLd-VQ-PH0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CSNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vLd-VQ-PH0" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oq9-E0-VNs"/>
                         <viewControllerLayoutGuide type="bottom" id="kEr-g4-6fA"/>
@@ -183,21 +183,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="tba-V7-lOD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="tba-V7-lOD">
                                 <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarCSNView" destination="tba-V7-lOD" id="hix-5T-JbH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w99-OQ-hPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1072" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="I8F-ng-crr">
             <objects>
-                <viewController storyboardIdentifier="CBSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VTE-s4-3Bo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CBSViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VTE-s4-3Bo" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4df-QK-ncG"/>
                         <viewControllerLayoutGuide type="bottom" id="Nt4-Xm-6La"/>
@@ -233,21 +236,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-vA-jOd">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-vA-jOd">
                                 <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarCBSView" destination="gJd-vA-jOd" id="HRM-aS-byU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPh-Io-HHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3886" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="rV6-QZ-I8T">
             <objects>
-                <viewController storyboardIdentifier="FOXViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M8B-o4-fAk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FOXViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="M8B-o4-fAk" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v8W-2z-DBd"/>
                         <viewControllerLayoutGuide type="bottom" id="y05-Re-bi8"/>
@@ -283,21 +289,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="sBN-qh-2qS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="sBN-qh-2qS">
                                 <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarFOXView" destination="sBN-qh-2qS" id="vZO-Sc-BaL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQU-oz-rxR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6371" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="5SG-Hj-0g7">
             <objects>
-                <viewController storyboardIdentifier="CNNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g5I-D7-xvE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CNNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g5I-D7-xvE" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lz2-R3-AnC"/>
                         <viewControllerLayoutGuide type="bottom" id="gxS-1V-upG"/>
@@ -333,21 +342,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="ypU-RH-u52">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="ypU-RH-u52">
                                 <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarCNNView" destination="ypU-RH-u52" id="bB8-A3-7Qo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsS-Pv-jff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1260" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="cWq-2E-ME6">
             <objects>
-                <viewController storyboardIdentifier="AMCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xoz-Im-lQw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AMCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xoz-Im-lQw" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rEe-LU-WEu"/>
                         <viewControllerLayoutGuide type="bottom" id="LhW-hI-PaP"/>
@@ -383,12 +395,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-Ca-QjS">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-Ca-QjS">
                                 <rect key="frame" x="188.83409217955705" y="882" width="1535.9999999999991" height="20.000000000000227"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarAMCView" destination="vVu-Ca-QjS" id="f3k-WM-t04"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXX-g8-aiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="uTc-sh-yFh">
@@ -397,10 +412,10 @@
             </objects>
             <point key="canvasLocation" x="-6676" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="qRy-fM-bSV">
             <objects>
-                <viewController storyboardIdentifier="ESPNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GY4-Pq-8RY" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ESPNViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GY4-Pq-8RY" customClass="ChannelViewController" customModule="Channel_Change_Preview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Sn-jB-clO"/>
                         <viewControllerLayoutGuide type="bottom" id="oKf-mC-0Wp"/>
@@ -436,12 +451,15 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="2Aj-Dh-SmX">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="loadbar" translatesAutoresizingMaskIntoConstraints="NO" id="2Aj-Dh-SmX">
                                 <rect key="frame" x="192" y="882" width="1536" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="loadingbarESPNView" destination="2Aj-Dh-SmX" id="hGb-sQ-lme"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7CK-En-VCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

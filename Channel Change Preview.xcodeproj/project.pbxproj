@@ -88,16 +88,16 @@
 		8D856A161F95DF7300E57C81 /* Channel Change Preview */ = {
 			isa = PBXGroup;
 			children = (
+				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
 				8D856A171F95DF7300E57C81 /* AppDelegate.swift */,
 				8D856A361F95E20600E57C81 /* main.swift */,
 				8D856A381F95E21400E57C81 /* UIApplication.swift */,
 				8D856A191F95DF7300E57C81 /* ViewController.swift */,
 				8D856A3A1F95E33E00E57C81 /* PageViewController.swift */,
-				8D856A1B1F95DF7300E57C81 /* Main.storyboard */,
+				8D9E9DEE1FA7DAB900794153 /* ChannelViewController.swift */,
 				8D973C551F9EAEDE00D8779E /* SpeedBumpViewController.swift */,
 				8D973C531F9EAE6000D8779E /* SpeedBumpPageContentViewController.swift */,
 				8D856A1E1F95DF7300E57C81 /* Assets.xcassets */,
-				8D9E9DEE1FA7DAB900794153 /* ChannelViewController.swift */,
 				8D856A201F95DF7300E57C81 /* Info.plist */,
 			);
 			path = "Channel Change Preview";
