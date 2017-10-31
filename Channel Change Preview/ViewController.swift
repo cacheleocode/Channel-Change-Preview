@@ -10,10 +10,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var prevLogoView: UIImageView!
     @IBOutlet weak var prevTitleView: UILabel!
     @IBOutlet weak var prevMetadataView: UILabel!
+    @IBOutlet weak var prevDurationView: UILabel!
+    @IBOutlet weak var prevTimeView: UILabel!
     @IBOutlet weak var nextView: UIView!
     @IBOutlet weak var nextLogoView: UIImageView!
+    @IBOutlet weak var nextDurationView: UILabel!
     @IBOutlet weak var nextTitleView: UILabel!
     @IBOutlet weak var nextMetadataView: UILabel!
+    @IBOutlet weak var nextTimeView: UILabel!
     @IBOutlet weak var fakeUIView: UIImageView!
     
     let queue = DispatchQueue(label: "queue", attributes: .concurrent)
@@ -80,6 +84,24 @@ class ViewController: UIViewController {
          "2017",
          "2017",
          "S2 E3 | Bout that"
+    ]
+    
+    var channelDuration: Array = [
+        "7:00 — 9:00p",
+        "7:00 — 8:00p",
+        "5:00 — 7:30p",
+        "7:15 — 9:15p",
+        "6:50 — 8:30p",
+        "7:00 — 8:00p"
+    ]
+    
+    var channelTime: Array = [
+        "1h 38m left",
+        "32m left",
+        "1h 30m left",
+        "2h 20m left",
+        "18m left",
+        "12m left"
     ]
     
     var randomNum: UInt32?
@@ -368,10 +390,14 @@ class ViewController: UIViewController {
                 self.prevLogoView.image = self.logoImages[index]
                 self.prevTitleView.text = self.channelTitle[index]
                 self.prevMetadataView.text = self.channelDescription[index]
+                self.prevDurationView.text = self.channelDuration[index]
+                self.prevTimeView.text = self.channelTime[index]
                 
                 self.nextLogoView.image = self.logoImages[index]
                 self.nextTitleView.text = self.channelTitle[index]
                 self.nextMetadataView.text = self.channelDescription[index]
+                self.nextDurationView.text = self.channelDuration[index]
+                self.nextTimeView.text = self.channelTime[index]
                 
                 // animate preview in
                 UIView.animate(withDuration: 0.3, animations: {
